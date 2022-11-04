@@ -1,4 +1,9 @@
 const { Router } = require('express')
+const { getAll, getById, save, updateById, deleteById } = require('../controllers/controllerProductos')
+
+const productos = []
+
+
 
 const routerProductos = new Router()
 

@@ -9,13 +9,7 @@ app.use(express.json())
 
 app.use('/api/productos', routerProductos)
 
-function conectar(puerto = 0) {
-    return new Promise((resolve, reject) => {
-        const servidorConectador = app.listen(puerto, () => {
-            resolve(servidorConectador)
-        })
-        servidorConectador.on("error", error => reject(error))
-    })
-}
 
-module.exports = { conectar }
+const server = app.listen(8080, () => {
+    console.log(`Aplicaion en el puerto: ${server.address().port}`)
+})
