@@ -1,13 +1,28 @@
 <section class="container-lg">
-    <h1>Lista de productos</h1>
+    <h1 class="text-center py-5">Lista de productos</h1>
     {{#if isEmpty}}
-    <ul class="list-group">
-        {{#each productos}}
-        <li class="list-group-item">{{this.title}}</li>
-        {{/each}}
-    </ul>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Imagen</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each productos}}
+            <tr>
+                <td>{{this.title}}</td>
+                <td>{{this.price}}</td>
+                <td><img class="table__img" src={{this.img}} alt=""></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
     {{else}}
-    <h1>Esta bacio</h1>
+    <div class="alert alert-danger" role="alert">
+        No hay productos
+    </div>
     {{/if}}
 
 </section>

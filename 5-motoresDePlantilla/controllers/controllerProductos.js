@@ -7,8 +7,9 @@ class ContenedorArchivo {
     }
 
 
-    getAll = (req, res) => {
-        res.status(200).json({data: this.productos})
+    getAll = (req, res, next) => {
+        req.productos = this.productos
+        next()
     }
 
     save = (req, res) => {
@@ -18,7 +19,7 @@ class ContenedorArchivo {
             id: id
         }
         this.productos.push(newProducto)
-        res.status(201).json({data: newProducto})
+        res.redirect('/productos')
     }
 
     getById = (req, res) => {

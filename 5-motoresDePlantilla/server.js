@@ -9,7 +9,6 @@ const app = express()
 /* ------------------------------- MIDDLEWARES ------------------------------ */
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
-// app.use('/views', express.static('views'))
 
 app.engine('handlebars', engine())
 app.set('view engine', 'handlebars')
