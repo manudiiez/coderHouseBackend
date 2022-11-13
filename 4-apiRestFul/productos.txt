@@ -1,11 +1,5 @@
 [
   {
-    "title": "buzo",
-    "price": "19",
-    "thumbnail": "123",
-    "id": "681e2cd1-82fc-4f70-a9f9-41d5cedcc070"
-  },
-  {
     "title": "buzo2",
     "price": "21",
     "thumbnail": "123",
