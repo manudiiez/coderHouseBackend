@@ -1,8 +1,8 @@
 [
   {
-    "title": "buzo2",
-    "price": "21",
+    "price": 10,
+    "title": "Campera",
     "thumbnail": "123",
-    "id": "6765f373-7e84-4d68-b759-b262b1fb55ee"
+    "id": "b0061a30-b40a-43c6-96dd-f96a274fe22d"
   }
 ]
