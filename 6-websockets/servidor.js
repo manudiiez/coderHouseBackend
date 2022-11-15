@@ -5,9 +5,10 @@ const express = require('express')
 const { Server: HttpServer } = require('http')
 const { Server: IOServer } = require('socket.io')
 
-
+// APP
 const app = express()
 const httpServer = new HttpServer(app)
+app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 const io = new IOServer(httpServer)
 
@@ -24,6 +25,10 @@ io.on('connection', socket => {
     console.log('new connection', socket.id)
 
     socket.emit('server:connection', socket.id)
+
+    socket.on('product:save', (data) => {
+        io.sockets.emit('product:save', data);
+    })
 })
 
 const server = httpServer.listen(8080, () => {

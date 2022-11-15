@@ -4,17 +4,5 @@
     "price": "32",
     "img": "https://scandinavianar.vtexassets.com/arquivos/ids/163808-800-auto?v=637769033364400000&width=800&height=auto&aspect=true",
     "id": "6a3af627-dfcd-4502-9370-d01e9c94522e"
-  },
-  {
-    "title": "Buzo",
-    "price": "24",
-    "img": "https://www.dexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwbe42d1cd/products/UA_1354539-001/UA_1354539-001-1.JPG",
-    "id": "8ed5e8a4-f52b-43aa-bfae-4ecb5cc302fd"
-  },
-  {
-    "title": "anuel",
-    "price": "12",
-    "img": "aASa",
-    "id": "3a6df78d-a4e2-4954-8a02-d535a30432f5"
   }
 ]
