@@ -5,23 +5,23 @@ class ContenedorArchivo {
 
     constructor(ruta) {
         this.ruta = ruta;
-        this.productos = []
+        this.lista = []
     }
 
 
     async getAll() {
         try {
-            this.productos = JSON.parse(await fs.promises.readFile(this.ruta, 'utf-8'))
-            return this.productos
+            this.lista = JSON.parse(await fs.promises.readFile(this.ruta, 'utf-8'))
+            return this.lista
         } catch (error) {
             throw new Error(`No se encontro la ruta ${this.ruta}`)
         }
     }
     async save(producto) {
         try {
-            this.productos = await this.getAll();
-            this.productos.push(producto)
-            await fs.promises.writeFile(this.ruta, JSON.stringify(this.productos, null, 2))
+            this.lista = await this.getAll();
+            this.lista.unshift(producto)
+            await fs.promises.writeFile(this.ruta, JSON.stringify(this.lista, null, 2))
             return producto
         } catch (error) {
             throw new Error(`Error al leer el archivo con ruta ${this.ruta}`)
@@ -30,12 +30,12 @@ class ContenedorArchivo {
 
     async getById(id) {
         try {
-            this.productos = await this.getAll();
-            const productoIndex = this.productos.findIndex(item => item.id === id)
+            this.lista = await this.getAll();
+            const productoIndex = this.lista.findIndex(item => item.id === id)
             if (productoIndex === -1) {
                 throw new Error(`No se encontro ningun producto con el id: ${id}`)
             }
-            return this.productos[productoIndex]
+            return this.lista[productoIndex]
         } catch (error) {
             throw new Error(error)
         }
@@ -43,13 +43,13 @@ class ContenedorArchivo {
 
     async updateById(objeto) {
         try {
-            this.productos = await this.getAll();
-            const productoIndex = this.productos.findIndex(item => item.id === objeto.id)
+            this.lista = await this.getAll();
+            const productoIndex = this.lista.findIndex(item => item.id === objeto.id)
             if (productoIndex === -1) {
                 throw new Error(`No se encontro ningun producto con el id: ${id}`)
             }
-            this.productos[productoIndex] = objeto;
-            await fs.promises.writeFile(this.ruta, JSON.stringify(this.productos, null, 2))
+            this.lista[productoIndex] = objeto;
+            await fs.promises.writeFile(this.ruta, JSON.stringify(this.lista, null, 2))
             return objeto
         } catch (error) {
             throw new Error(error)
@@ -58,9 +58,9 @@ class ContenedorArchivo {
 
     async deleteById(id) {
         try {
-            this.productos = await this.getAll();
-            this.productos = this.productos.filter(e => e.id !== id)
-            await fs.promises.writeFile(this.ruta, JSON.stringify(this.productos, null, 2))
+            this.lista = await this.getAll();
+            this.lista = this.lista.filter(e => e.id !== id)
+            await fs.promises.writeFile(this.ruta, JSON.stringify(this.lista, null, 2))
             return `Producto ${id} eliminado`
         } catch (error) {
             throw new Error(`Error al leer el archivo con ruta ${this.ruta}`)

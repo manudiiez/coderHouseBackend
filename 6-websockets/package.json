@@ -2,7 +2,7 @@
   "name": "apirestful",
   "version": "1.0.0",
   "description": "",
-  "main": "servidor.js",
+  "main": "index.js",
   "scripts": {
     "start": "nodemon servidor.js"
   },
