@@ -10,5 +10,11 @@
     "price": "24",
     "img": "https://www.dexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwbe42d1cd/products/UA_1354539-001/UA_1354539-001-1.JPG",
     "id": "8ed5e8a4-f52b-43aa-bfae-4ecb5cc302fd"
+  },
+  {
+    "title": "Buzo nashe",
+    "price": "12",
+    "img": "https://f.fcdn.app/imgs/a7ab0b/tienda.ucc.edu.ar/ucatar/6eaa/original/catalogo/03000020011/1920-1200/buzo-con-capucha-ucc-negro.jpg",
+    "id": "f738d3a2-5f2d-4574-9005-e858a2e86e6c"
   }
 ]
