@@ -1,0 +1,18 @@
+API REST
+
+vamos a tener dos routers: prodcutos y carrito
+
+Ambos routers envabezan sus rutas como /api/"laruta"
+
+PRODUCTOS:
+
+GetAll (todos)
+GetById (todos)
+Save (admin)
+UpdateById (admin)
+DeleteById (admin)
+
+Verificacion de admin: Variable booleana hardcodeada por el momento (futuras clases implementaremos un login)
+
+Hacer dos rutas para cambiar el estado del admin
+

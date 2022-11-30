@@ -1,0 +1,21 @@
+[
+  {
+    "productos": [],
+    "id": "a537d403-f0c9-48ab-9aad-464da8bdd371"
+  },
+  {
+    "productos": [],
+    "id": "57186852-259a-478f-8192-80cb720c6c81"
+  },
+  {
+    "productos": [
+      {
+        "price": 42,
+        "name": "Campera",
+        "image": "123",
+        "id": "f06b7c12-25c8-43b2-8184-6740df913458"
+      }
+    ],
+    "id": "bb4cbfe2-c7c6-4acb-80f7-674ea4ccb6e8"
+  }
+]
