@@ -14,7 +14,7 @@ class ControladorProductos {
         } catch (error) {
             console.log(error)
             res.status(404).json({ error: `${error}` })
-        }
+        } 
     }
 
     save = async (req, res) => {

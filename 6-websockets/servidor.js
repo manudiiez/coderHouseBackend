@@ -18,7 +18,7 @@ app.set('view engine', 'handlebars')
 
 app.use('/', router)
 
-// SOCKET
+// SOCKET 
 io.on('connection', socket => {
     console.log('new connection', socket.id)
 
