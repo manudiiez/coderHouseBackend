@@ -44,9 +44,9 @@ class ControladorProductos {
             const id = req.params.id
             const productoBuscado = await this.contenedor.getById(id)
             const newBody = req.body
-            productoBuscado.title = newBody.title || productoBuscado.title
             productoBuscado.price = newBody.price || productoBuscado.price
-            productoBuscado.thumbnail = newBody.thumbnail || productoBuscado.thumbnail
+            productoBuscado.name = newBody.name || productoBuscado.name
+            productoBuscado.description = newBody.description || productoBuscado.description
             res.status(200).json({ data: await this.contenedor.updateById(productoBuscado) })
         } catch (error) {
             res.status(404).json({ error: `${error}` })
