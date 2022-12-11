@@ -18,7 +18,7 @@ app.use('/api/shoppingcart', routerCart)
 app.use('/api/auth', routerAuth)
 
 app.use('*', (req, res) => {
-    res.status(404).json( { error : -2, descripcion:" ruta 'x' método 'y' no implementada"})
+    res.status(404).json( { error : -2, descripcion:`ruta '${req.url}' método '${req.method}' no implementada`})
 })
 
 
