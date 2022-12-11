@@ -1,18 +1,24 @@
 <section class="container-lg">
     <h1 class="text-center py-5">Añadir un producto</h1>
-    <form action="/productos" method="post">
+    <form id="form">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Nombre</label>
-            <input type="text" class="form-control" name="title"  aria-describedby="emailHelp">
+            <input type="text" class="form-control" required name="name" aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Precio</label>
-            <input type="number" class="form-control" name="price"  aria-describedby="emailHelp">
+            <input type="number" class="form-control" required name="price" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Descripcion</label>
+            <input type="text" class="form-control" required name="description" aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Url de la imagen</label>
-            <input type="text" class="form-control" name="img"  aria-describedby="emailHelp">
+            <input type="text" class="form-control" required name="image" aria-describedby="emailHelp">
         </div>
         <button type="submit" class="btn btn-primary">Crear</button>
     </form>
+    {{> listProducts}}
+
 </section>

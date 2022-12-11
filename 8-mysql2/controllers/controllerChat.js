@@ -18,17 +18,16 @@ class ControladorChat {
     save = async (req, res) => {
         try {
             const id = randomUUID();
-            const date = new Date()
             const newMessage = {
                 ...req.body,
-                id: id,
-                date: date
+                id: id
             }
             res.status(201).json({ data: await this.contenedor.save(newMessage) })
         } catch (error) {
             res.status(404).json({ error: `${error}` })
         }
     }
+    
 
 }
 
