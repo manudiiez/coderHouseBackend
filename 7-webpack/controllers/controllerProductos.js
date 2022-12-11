@@ -33,7 +33,7 @@ class ControladorProductos {
     getById = async (req, res) => {
         try {
             const id = req.params.id
-            res.status(200).json({ data: await this.contenedor.getById(id) })
+            res.status(302).json({ data: await this.contenedor.getById(id) })
         } catch (error) {
             res.status(404).json({ error: `${error}` })
         }
@@ -47,6 +47,7 @@ class ControladorProductos {
             productoBuscado.price = newBody.price || productoBuscado.price
             productoBuscado.name = newBody.name || productoBuscado.name
             productoBuscado.description = newBody.description || productoBuscado.description
+            productoBuscado.image = newBody.image || productoBuscado.image
             res.status(200).json({ data: await this.contenedor.updateById(productoBuscado) })
         } catch (error) {
             res.status(404).json({ error: `${error}` })
@@ -57,7 +58,7 @@ class ControladorProductos {
         try {
             const id = req.params.id
             await this.contenedor.getById(id)
-            res.status(200).json({ data: await this.contenedor.deleteById(id) })
+            res.status(301).json({ data: await this.contenedor.deleteById(id) })
         } catch (error) {
             res.status(404).json({ error: `${error}` })
         }

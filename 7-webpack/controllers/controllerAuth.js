@@ -21,9 +21,11 @@ class ControladorAuth {
         if (this.admin) {
             next()
         } else {
+            console.log(req.route.path);
+            console.log(req.route.stack[1].name);
             res.status(403).json({
                 error: -1, 
-                descripcion: "ruta y método no autorizados"
+                descripcion: `ruta ${req.route.path} y método ${req.route.stack[1].method} no autorizados`
             })
         }
     }

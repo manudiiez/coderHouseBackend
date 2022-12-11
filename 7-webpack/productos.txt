@@ -1,14 +1,16 @@
 [
   {
-    "price": 42,
+    "price": 22,
     "name": "Campera",
     "image": "123",
-    "id": "f06b7c12-25c8-43b2-8184-6740df913458"
+    "description": "lorem asdasdd ",
+    "id": "8028f179-7b60-46fa-bb71-7e4c110cd953"
   },
   {
     "price": 22,
-    "name": "Remera",
+    "name": "Buzo",
     "image": "123",
-    "id": "f4832982-f7f3-4455-b17b-51d759fbf162"
+    "description": "lorem asdasdd ",
+    "id": "142eb75b-4bd2-4d88-82d7-8513a3b986cc"
   }
 ]

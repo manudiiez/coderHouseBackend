@@ -33,7 +33,7 @@ class ContenedorArchivo {
             this.productos = await this.getAll();
             const productoIndex = this.productos.findIndex(item => item.id === id)
             if (productoIndex === -1) {
-                throw new Error(`No se encontro ningun producto con el id: ${id}`)
+                throw new Error(`No se encontro ningun item con el id: ${id}`)
             }
             return this.productos[productoIndex]
         } catch (error) {
@@ -46,7 +46,7 @@ class ContenedorArchivo {
             this.productos = await this.getAll();
             const productoIndex = this.productos.findIndex(item => item.id === objeto.id)
             if (productoIndex === -1) {
-                throw new Error(`No se encontro ningun producto con el id: ${id}`)
+                throw new Error(`No se encontro ningun item con el id: ${id}`)
             }
             this.productos[productoIndex] = objeto;
             await fs.promises.writeFile(this.ruta, JSON.stringify(this.productos, null, 2))
@@ -61,7 +61,7 @@ class ContenedorArchivo {
             this.productos = await this.getAll();
             this.productos = this.productos.filter(e => e.id !== id)
             await fs.promises.writeFile(this.ruta, JSON.stringify(this.productos, null, 2))
-            return `Producto ${id} eliminado`
+            return `Item ${id} eliminado`
         } catch (error) {
             throw new Error(`Error al leer el archivo con ruta ${this.ruta}`)
         }

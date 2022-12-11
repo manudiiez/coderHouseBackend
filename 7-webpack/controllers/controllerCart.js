@@ -40,7 +40,7 @@ class ControladorCart {
             const id_cart = req.params.id_cart
             const cart = await this.contenedor.getById(id_cart)
             cart.productos = []
-            res.status(201).json({ data: await this.contenedor.updateById(cart) })
+            res.status(301).json({ data: await this.contenedor.updateById(cart) })
         } catch (error) {
             res.status(404).json({ error: `${error}` })
         }
@@ -51,8 +51,9 @@ class ControladorCart {
             const id_cart = req.params.id_cart
             const id_prod = req.params.id_prod
             const cart = await this.contenedor.getById(id_cart)
-            cart.productos = cart.productos.filter(e => e.id !== id_prod)
-            res.status(201).json({ data: await this.contenedor.updateById(cart) })
+            const index = cart.productos.findIndex(item => item.id === id_prod)
+            cart.productos.splice(index, 1);
+            res.status(301).json({ data: await this.contenedor.updateById(cart) })
         } catch (error) {
             res.status(404).json({ error: `${error}` })
         }
@@ -62,7 +63,7 @@ class ControladorCart {
         try {
             const id_cart = req.params.id_cart
             const cart = await this.contenedor.getById(id_cart)
-            res.status(201).json({ products: cart.productos })
+            res.status(200).json({ products: cart.productos })
         } catch (error) {
             res.status(404).json({ error: `${error}` })
         }

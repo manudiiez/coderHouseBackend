@@ -1,21 +1,32 @@
 [
   {
     "productos": [],
-    "id": "a537d403-f0c9-48ab-9aad-464da8bdd371"
-  },
-  {
-    "productos": [],
-    "id": "57186852-259a-478f-8192-80cb720c6c81"
+    "id": "eec37bdd-c7c2-4c35-bfba-468a1008bfac"
   },
   {
     "productos": [
       {
-        "price": 42,
+        "price": 22,
         "name": "Campera",
         "image": "123",
-        "id": "f06b7c12-25c8-43b2-8184-6740df913458"
+        "description": "lorem asdasdd ",
+        "id": "8028f179-7b60-46fa-bb71-7e4c110cd953"
+      },
+      {
+        "price": 22,
+        "name": "Campera",
+        "image": "123",
+        "description": "lorem asdasdd ",
+        "id": "8028f179-7b60-46fa-bb71-7e4c110cd953"
+      },
+      {
+        "price": 22,
+        "name": "Buzo",
+        "image": "123",
+        "description": "lorem asdasdd ",
+        "id": "142eb75b-4bd2-4d88-82d7-8513a3b986cc"
       }
     ],
-    "id": "bb4cbfe2-c7c6-4acb-80f7-674ea4ccb6e8"
+    "id": "09ebec62-254c-460f-aed5-6b311ebfa626"
   }
 ]

@@ -17,4 +17,4 @@ routerCart.post('/:id_cart/products', controller.save)
 routerCart.get('/:id_cart/products', controller.getAllProducts)
 routerCart.delete('/:id_cart/products/:id_prod', controller.deleteOneProduct)
 
-export default routerCart
+export default routerCart 
