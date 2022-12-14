@@ -7,8 +7,12 @@ import routerAuth from './routers/routerAuth.js'
 import routerCart from './routers/routerCart.js'
 import routerChat from './routers/routerChat.js'
 import router, { contenedorChat, contenedorProductos } from './routers/router.js'
+import { createTableChat, createTableProductos } from './db/dbConfig.js'
+
 
 const app = express()
+createTableProductos()
+createTableChat()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
@@ -36,7 +40,6 @@ io.on('connection', socket => {
     console.log('new connection', socket.id)
     
     socket.on('product:save', async() => {
-        console.log(await contenedorProductos.getAll());
         io.sockets.emit('product:save', await contenedorProductos.getAll());
     })
     

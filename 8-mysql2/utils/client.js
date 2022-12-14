@@ -6,7 +6,7 @@ const mysqlConfig = {
         host: 'localhost',
         user: 'root',
         password: '',
-        database: 'ecommerce',
+        database: 'ecommerce2',
         port: 3306
       }
 }
