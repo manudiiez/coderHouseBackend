@@ -13,7 +13,6 @@ formChat.addEventListener('submit', async (e) => {
     const date = new Date()
 
     newChat['date'] = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} a las ${date.getHours()}:${date.getMinutes()}`
-    console.log(newChat);
     await fetch('/chat', {
         method: 'POST',
         headers: {

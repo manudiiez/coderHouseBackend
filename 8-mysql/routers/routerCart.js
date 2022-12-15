@@ -1,6 +1,6 @@
 import { Router } from "express"
-import ContenedorArchivo from "../controllers/ContenedorArchivo.js"
 import ControladorCart from "../controllers/controllerCart.js"
+import ContenedorArchivo from '../containers/ContenedorArchivo.js'
 
 const rutaArchivo = './cart.txt'
 const rutaProductos = './productos.txt'

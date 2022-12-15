@@ -1,7 +1,7 @@
 import { Router } from "express"
-import ContenedorMysql from "../controllers/ContenedorMysql.js"
-import { clienteSql } from "../client.js"
+import ContenedorMysql from "../containers/ContenedorMysql.js"
 import ControladorChat from "../controllers/controllerChat.js"
+import { clienteSql } from "../utils/client.js"
 
 
 const routerChat = new Router()

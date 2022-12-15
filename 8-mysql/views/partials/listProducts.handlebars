@@ -6,15 +6,17 @@
             <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col">Precio</th>
+                <th scope="col">Descripcion</th>
                 <th scope="col">Imagen</th>
             </tr>
         </thead>
         <tbody id="listProducts">
             {{#each productos}}
             <tr>
-                <td>{{this.title}}</td>
+                <td>{{this.name}}</td>
                 <td>{{this.price}}</td>
-                <td><img class="table__img" src={{this.thumbnail}} alt=""></td>
+                <td>{{this.description}}</td>
+                <td><img class="table__img" src={{this.image}} alt=""></td>
             </tr>
             {{/each}}
         </tbody>

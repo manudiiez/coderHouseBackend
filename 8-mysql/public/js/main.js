@@ -31,11 +31,13 @@ socket.on('product:save', (data) => {
     data.map(product => {
         listProducts.innerHTML += `
             <tr>
-                <td>${product.title}</td>
+                <td>${product.name}</td>
                 <td>${product.price}</td>
-                <td><img class="table__img" src=${product.thumbnail} alt=""></td>
+                <td>${product.description}</td>
+                <td><img class="table__img" src=${product.image} alt=""></td>
             </tr>
         `
     })
 })
 
+ 

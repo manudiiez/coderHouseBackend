@@ -1,8 +1,8 @@
 import { Router } from "express"
-import ContenedorMysql from "../controllers/ContenedorMysql.js"
 import ControladorProductos from "../controllers/controllerProductos.js"
+import ContenedorMysql from "../containers/ContenedorMysql.js"
 import auth from "../controllers/controllerAuth.js"
-import { clienteSql } from "../client.js"
+import { clienteSql } from "../utils/client.js"
 
 
 const routerProducts = new Router()
