@@ -1,0 +1,30 @@
+<div>
+    <h1 class="text-center py-5">Lista de productos</h1>
+    {{#if isEmpty}}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Imagen</th>
+            </tr>
+        </thead>
+        <tbody id="listProducts">
+            {{#each productos}}
+                <tr>
+                    <td>{{this.name}}</td>
+                    <td>{{this.price}}</td>
+                    <td>{{this.description}}</td>
+                    <td><img class="table__img" src={{this.image}} alt=""></td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{else}}
+    <div class="alert alert-danger" role="alert">
+        No hay productos
+    </div>
+    {{/if}}
+
+</div>
