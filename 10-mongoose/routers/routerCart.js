@@ -3,9 +3,15 @@ import ControladorCart from "../controllers/controllerCart.js"
 import ContenedorMongodb from "../containers/ContenedorMongodb.js"
 import Product from '../models/Product.js'
 import Cart from '../models/Cart.js'
+import { ContenedorFirebase } from "../containers/ContenedorFirebase.js"
 
 const routerCart = new Router()
 
+/* -------------------------------- FIREBASE -------------------------------- */
+// const contenedor = new ContenedorFirebase('cart')
+// const contenedorProducts = new ContenedorFirebase('products')
+
+/* --------------------------------- MONGODB -------------------------------- */
 const contenedor = new ContenedorMongodb(Cart)
 const contenedorProducts = new ContenedorMongodb(Product)
 const controller = new ControladorCart(contenedor, contenedorProducts)

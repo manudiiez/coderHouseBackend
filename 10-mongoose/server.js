@@ -10,6 +10,8 @@ import routerCart from './routers/routerCart.js'
 import routerChat from './routers/routerChat.js'
 /* ---------------------------- ROUTES WEBSOCKET ---------------------------- */
 import router, { contenedorChat, contenedorProductos } from './routers/router.js'
+/* --------------------------------- CONFIG --------------------------------- */
+import { MONGO_URI } from './config/config.js'
 
 
 const app = express()
@@ -26,7 +28,7 @@ app.set('view engine', 'handlebars')
 const connect = async () => {
     try {
         // await mongoose.connect(process.env.MONGO);
-        await mongoose.connect('mongodb://localhost:27017/ecommerce');
+        await mongoose.connect(MONGO_URI);
         console.log('Connected to mongoDB')
     } catch (error) {
         throw error;

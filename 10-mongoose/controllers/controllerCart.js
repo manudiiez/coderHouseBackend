@@ -1,4 +1,3 @@
-import Cart from '../models/Cart.js'
 
 class ControladorCart {
 
@@ -32,9 +31,9 @@ class ControladorCart {
         try {
             const id_cart = req.params.id_cart
             const id = req.body.id
-            const newCart = await Cart.findByIdAndUpdate(id_cart, {
-                $push: { products: id },
-            }, { new: true })
+            const newCart = await this.contenedor.getById(id_cart)
+            newCart.products.push(id)
+            this.contenedor.updateById(id_cart, newCart)
             res.status(201).json({ data: newCart })
         } catch (error) {
             res.status(404).json({ error: `${error}` })
@@ -44,10 +43,10 @@ class ControladorCart {
     deleteAllProducts = async(req, res) => {
         try {
             const id_cart = req.params.id_cart
-            const newCart = await Cart.findByIdAndUpdate(id_cart, {
-                $set: {products: []}
-            }, { new: true })
-            res.status(201).json({ data: newCart })
+            const newCart = await this.contenedor.getById(id_cart)
+            newCart.products = []
+            const result = await this.contenedor.updateById(id_cart, newCart)
+            res.status(201).json({ data: result })
         } catch (error) {
             res.status(404).json({ error: `${error}` })
         }
@@ -57,9 +56,10 @@ class ControladorCart {
         try {
             const id_cart = req.params.id_cart
             const id_prod = req.params.id_prod
-            const newCart = await Cart.findByIdAndUpdate(id_cart, {
-                $pull: { products: id_prod }
-            }, { new: true })
+            const newCart = await this.contenedor.getById(id_cart)
+            const index = newCart.products.findIndex((item) => item.id === id_prod);
+            newCart.products.splice(index, 1);
+            this.contenedor.updateById(id_cart, newCart)
             res.status(201).json({ data: newCart })
         } catch (error) {
             res.status(404).json({ error: `${error}` })
@@ -70,7 +70,11 @@ class ControladorCart {
         try {
             const id_cart = req.params.id_cart
             const cart = await this.contenedor.getById(id_cart)
-            res.status(201).json({ products: cart.productos })
+            console.log(cart);
+            const list = await Promise.all(cart.products.map(product => {
+                return this.contenedorProductos.getById(product)
+            }))
+            res.status(201).json({ products: list })
         } catch (error) {
             res.status(404).json({ error: `${error}` })
         }
