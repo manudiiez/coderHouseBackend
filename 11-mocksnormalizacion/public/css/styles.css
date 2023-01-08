@@ -1,0 +1,58 @@
+
+.table__img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+#chatContainer{
+    background-color: #ccc;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 14px;
+    max-height: 400px;
+    overflow-y: scroll;
+}
+
+
+#chatContainer .chatMessage{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+#chatContainer .chatMessage p{
+    margin: 0;
+}
+#chatContainer .chatMessage .chatHeader{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+#chatContainer .chatMessage .chatInfo{
+    width: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 100px;
+}
+#chatContainer .chatMessage img{
+    width: 50px;
+    border-radius: 50%;
+}
+
+#chatContainer .chatMessage .chatEmail{
+    color: #001aff;
+    font-weight: bolder;
+}
+#chatContainer .chatMessage .chatDate{
+    font-weight: normal;
+    color: rgb(139, 41, 41);
+}
+#chatContainer .chatMessage .chatText{
+    font-weight: normal;
+    color: rgb(2, 114, 2);
+}

@@ -25,4 +25,4 @@ const controller = new ControladorProductos(contenedor)
 routerChat.get('/', controller.getAll)
 routerChat.post('/', controller.save)
 
-export default routerChat
+export default routerChat 
