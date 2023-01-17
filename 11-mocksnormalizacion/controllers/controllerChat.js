@@ -32,3 +32,4 @@ class ControladorChat {
 }
 
 export default ControladorChat
+ 

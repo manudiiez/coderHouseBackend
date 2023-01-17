@@ -36,5 +36,8 @@ export function denormalizeMessages(data){
 	})
 
 	const denormalizedData = denormalize(data.result, chat, data.entities);
+
+	console.log(denormalizedData.messages);
+
 	return denormalizedData.messages
 }

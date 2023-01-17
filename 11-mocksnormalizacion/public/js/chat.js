@@ -1,7 +1,8 @@
-
 const formChat = document.getElementById('formChat')
 const formInputsChat = document.querySelectorAll('#formChat input');
 const chatContainer = document.getElementById('chatContainer')
+
+const schema = normalizr.schema
 
 
 formChat.addEventListener('submit', async (e) => {
@@ -30,11 +31,28 @@ formChat.addEventListener('submit', async (e) => {
     socket.emit('chat:message')
 })
 
+function denormalizeMessages(data){
+	const user = new schema.Entity('users');
+	const message = new schema.Entity('messages', {
+		author: user
+	});
+	const chat = new schema.Entity('chat', {
+		messages: [message]
+	})
+
+	const denormalizedData = normalizr.denormalize(data.result, chat, data.entities);
+
+	console.log(denormalizedData.messages);
+
+	return denormalizedData.messages
+}
 
 
 socket.on('chat:message', (data) => {
     chatContainer.innerHTML = ''
-    data.map(message => {
+    const messagesList = denormalizeMessages(data)
+    console.log(messagesList);
+    messagesList.map(message => {
         chatContainer.innerHTML += `
             <div class="chatMessage">
                 <div class="chatHeader">

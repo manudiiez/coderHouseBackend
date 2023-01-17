@@ -49,8 +49,8 @@ io.on('connection', socket => {
     socket.on('chat:message', async() => {
         const messages = await contenedorChat.getAll()
         const normalizedMessages = normalizeMessages(messages);
-        const denormalizedMessages = denormalizeMessages(normalizedMessages)
-        io.sockets.emit('chat:message', denormalizedMessages);
+        // const denormalizedMessages = denormalizeMessages(normalizedMessages)
+        io.sockets.emit('chat:message', normalizedMessages);
         // io.sockets.emit('chat:message', await contenedorChat.getAll());
     })
     
