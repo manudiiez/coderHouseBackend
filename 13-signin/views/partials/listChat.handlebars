@@ -1,0 +1,21 @@
+<div id="chatContainer">
+    {{#if isEmpty}}
+    {{#each productos}}
+    <div class="chatMessage">
+        <div class="chatHeader">
+            <img src={{this.avatar}} alt="">
+            <div class="chatInfo">
+                <p class="chatEmail">{{this.alias}}</p>
+                <p class="chatDate">{{this.date}}</p>
+            </div>
+        </div>
+        <p class="chatText">{{this.text}}</p>
+    </div>
+    {{/each}}
+    {{else}}
+    <div class="alert alert-danger" role="alert">
+        No hay Mensajes
+    </div>
+    {{/if}}
+
+</div>
