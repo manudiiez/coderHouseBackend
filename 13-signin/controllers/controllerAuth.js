@@ -43,9 +43,9 @@ class ControladorAuth {
             if (!user) {
                 await this.contenedor.save(newUser)
                 req.session.user = email
-                res.render('index')
+                res.status(201).json({ data: true })
             }else{
-                console.log('ya existe');
+                res.status(404).json({ data: false })
             }
         } catch (error) {
             res.status(404).json({ error: `${error}` })
@@ -55,14 +55,19 @@ class ControladorAuth {
         try {
             const user = await this.contenedor.getByEmail(req.body.email)
             const isPasswordCorrect = await bcrypt.compareSync(req.body.password, user.password);
-            if (isPasswordCorrect) {
-                req.session.user = user.email
-                res.render('index')
-            } else {
-                res.render('errorRegister')
+            if (user){
+                if (isPasswordCorrect ) {
+                    req.session.user = user.email
+                    res.status(201).json({ data: true })
+                } else {
+                    res.status(404).json({ data: false })
+                }
+            }else{
+                res.status(404).json({ data: false })
             }
+            
         } catch (error) {
-            res.status(404).json({ error: `${error}` })
+            res.status(404).json({ data: false })
         }
     }
 

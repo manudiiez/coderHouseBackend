@@ -7,7 +7,7 @@ formRegister.addEventListener('submit', async (e) => {
         newUser[formRegisterInput[i].name] = formRegisterInput[i].value
     }
     if( newUser['password'] === newUser['confirmPassword']){
-        await fetch('/api/auth/register', {
+        const response = await fetch('/api/auth/register', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -15,9 +15,16 @@ formRegister.addEventListener('submit', async (e) => {
             },
             body: JSON.stringify(newUser)
         })
-        location.href = '/';
+        const res = await response.json()
+        if( res.data ){
+            location.href = '/'
+        }else{
+            location.href = '/errorRegister'
+        }
     }else{
         location.href = '/errorRegister';
     }
+
+    
 })
 

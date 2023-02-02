@@ -8,7 +8,7 @@ formLogin.addEventListener('submit', async (e) => {
         newUser[formLoginInput[i].name] = formLoginInput[i].value
     }
 
-    await fetch('/api/auth/login', {
+    const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -16,5 +16,13 @@ formLogin.addEventListener('submit', async (e) => {
         },
         body: JSON.stringify(newUser)
     })
+    const res = await response.json()
+    if( res.data ){
+        location.href = '/'
+    }else{
+        location.href = '/errorLogin'
+    }
+
+
 })
 
