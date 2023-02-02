@@ -17,8 +17,8 @@ import auth from "./controllers/controllerAuth.js"
 /* --------------------------------- CONFIG --------------------------------- */
 import { MONGO_URI, MONGO_SESSION } from './config/config.js'
 
-
-const app = express()
+ 
+const app = express() 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
@@ -85,8 +85,6 @@ io.on('connection', socket => {
     socket.on('chat:message', async () => {
         io.sockets.emit('chat:message', await contenedorChat.getAll());
     })
-
-
 
 })
 

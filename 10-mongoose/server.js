@@ -13,7 +13,7 @@ import router, { contenedorChat, contenedorProductos } from './routers/router.js
 /* --------------------------------- CONFIG --------------------------------- */
 import { MONGO_URI } from './config/config.js'
 
-
+ 
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
