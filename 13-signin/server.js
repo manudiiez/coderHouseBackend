@@ -17,6 +17,9 @@ import auth from "./controllers/controllerAuth.js"
 /* --------------------------------- CONFIG --------------------------------- */
 import { MONGO_URI, MONGO_SESSION } from './config/config.js'
 
+
+import './passport/local-auth.js'
+
  
 const app = express() 
 app.use(express.json())
@@ -92,4 +95,4 @@ io.on('connection', socket => {
 const server = httpServer.listen(process.env.PORT || 8080, () => {
     connect()
     console.log(`Aplicaion en el puerto: ${server.address().port}`)
-}) 
+})  

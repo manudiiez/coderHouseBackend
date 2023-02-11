@@ -1,0 +1,11 @@
+<%- layout('layouts/main.ejs') %>
+
+<ul class="list-group mt-5">
+    <li class="list-group-item"><span>Argumentos de entrada: </span><%= inputArguments %></li>
+    <li class="list-group-item"><span>Sistema operativo: </span><%= os %></li>
+    <li class="list-group-item"><span>Version de NodeJs: </span><%= NodeVersion %></li>
+    <li class="list-group-item"><span>Memoria total reservada: </span><%= RSS %></li>
+    <li class="list-group-item"><span>Path de ejecucion: </span><%= EjecutionPath %></li>
+    <li class="list-group-item"><span>Process Id: </span><%= processId %></li>
+    <li class="list-group-item"><span>Carpeta del proyecto: </span><%= projectFolder %></li>
+  </ul>
