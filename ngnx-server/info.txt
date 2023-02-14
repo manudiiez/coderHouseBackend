@@ -1,0 +1,37 @@
+# ------------------------------------ PM2 ----------------------------------- #
+
+PM2: Nos sirve para ejecutar los servidores sin ocupar una terminal, por lo tanto podemos ejecutar varios a la vez
+
+# ------------------------------- COMANDOS PM2 ------------------------------- #
+
+Para arrancar un server con pm2 utilizamos el isguiente comando
+
+    pm2 start ./src/main.js
+
+Para agregarle un nombre a la instancia le agregamos el paramtro --name
+
+    pm2 start ./src/main.js --name=instancia2
+
+Para agregale variables de entorno, nos dirigimos a una terminal git bash y ahi ejecutamos lo siguiente
+
+    PORT=8082 pm2 start ./src/main.js --name=instancia2
+
+Para pausar los procesos
+
+    pm2 stop all
+
+Para iniciar los procesos
+
+    pm2 restart all
+
+Para eliminar los procesos
+
+    pm2 delete all
+
+Para crear un cluster directo con pm2( el max es el numero de cpus que queremos usar):
+
+    PORT=8082 pm2 start ./src/main.js --name=instancia2 -i max
+        
+
+# ----------------------------------- NGINX ---------------------------------- #
+

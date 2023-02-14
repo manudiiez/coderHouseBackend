@@ -1,0 +1,23 @@
+{
+  "name": "cluster",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "type": "module",
+  "scripts": {
+    "start": "cross-env nodemon .",
+    "start:cluster": "cross-env MODO=cluster nodemon .",
+    "test": "cross-env cnode test/test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
+}

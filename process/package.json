@@ -2,16 +2,17 @@
   "name": "process",
   "version": "1.0.0",
   "description": "",
-  "main": "process.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon process.js"
+    "start": "nodemon ./ejemplo-2/server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.18.2",
     "minimist": "^1.2.8",
     "yargs": "^17.6.2"
   }
