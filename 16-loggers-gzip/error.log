@@ -1,0 +1,1 @@
+{"level":"error"[19/2/2023 20:07:31],"pid":1312,"hostname":"DESKTOP-FTC3BOA","msg":"Ruta: /api/products/ y  metodo: POST, no funciono correctamente. Error: ValidationError: name: Path `name` is required."}

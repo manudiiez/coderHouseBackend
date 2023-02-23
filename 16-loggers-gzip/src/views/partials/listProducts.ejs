@@ -1,0 +1,65 @@
+<section>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop">
+        Añadir un producto
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Añadir un producto</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form_new_product">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Nombre del producto</label>
+                            <input type="text" name="name" class="form-control form_new_product_input" 
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Precio del producto</label>
+                            <input type="number" name="price" class="form-control form_new_product_input" 
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Escriba una descripcion</label>
+                            <input type="text" name="description" class="form-control form_new_product_input" 
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Url de la imagen</label>
+                            <input type="text" name="image" class="form-control form_new_product_input" 
+                                aria-describedby="emailHelp">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="btn_new_product">Crear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ol class="list-group list-group-numbered" id="product_list_container">
+        <% products.forEach(function(product){ %>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold">
+                        <%= product.name %>
+                    </div>
+                    <%= product.description %>
+                        <p class="mt-2 text-success">
+                            <%= product.price %>
+                        </p>
+                </div>
+                <div class="col-md-4">
+                    <img src=<%=product.image %> class="img-fluid rounded-start" alt="...">
+                </div>
+            </li>
+            <% }); %>
+    </ol>
+</section>

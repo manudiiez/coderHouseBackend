@@ -1,0 +1,6 @@
+PORT=8080 pm2 start src/main.js --name=inst1
+PORT=8081 MODO=cluster pm2 start src/main.js --name=inst2
+PORT=8082 pm2 start src/main.js --name=inst3
+PORT=8083 pm2 start src/main.js --name=inst4
+PORT=8084 pm2 start src/main.js --name=inst5
+PORT=8085 pm2 start src/main.js --name=inst6
