@@ -1,7 +1,5 @@
 // EXPRESS
 import express from 'express'
-// GZIP
-import compression from 'compression'
 // MORGAN
 import morgan from 'morgan'
 // SOCKET
@@ -69,7 +67,6 @@ export default class Server {
 
             /* ------------------------------- MIDDLEWARES ------------------------------ */
             this.#app.use(express.json())
-            this.#app.use(compression())
             this.#app.use(express.urlencoded({ extended: true }))
             this.#app.use(express.static(__dirname + '/public'));
             // MORGAN

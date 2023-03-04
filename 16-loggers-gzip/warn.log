@@ -69,3 +69,8 @@
 {"level":"warn"[19/2/2023 20:07:49],"pid":1312,"hostname":"DESKTOP-FTC3BOA","msg":"Ruta: /1adasdasdasd y  metodo: GET inexistentes"}
 {"level":"warn"[19/2/2023 20:07:49],"pid":1312,"hostname":"DESKTOP-FTC3BOA","msg":"Ruta: /asdasdasda y  metodo: GET inexistentes"}
 {"level":"warn"[19/2/2023 20:07:49],"pid":1312,"hostname":"DESKTOP-FTC3BOA","msg":"Ruta: /dasdasdasdas y  metodo: GET inexistentes"}
+{"level":"warn"[3/3/2023 11:54:14],"pid":5888,"hostname":"DESKTOP-FTC3BOA","msg":"Ruta: /favicon.ico y  metodo: GET inexistentes"}
+{"level":"warn"[3/3/2023 11:54:17],"pid":5888,"hostname":"DESKTOP-FTC3BOA","msg":"Ruta: /favicon.ico y  metodo: GET inexistentes"}
+{"level":"warn"[4/3/2023 11:29:35],"pid":14464,"hostname":"DESKTOP-FTC3BOA","msg":"Ruta: /favicon.ico y  metodo: GET inexistentes"}
+{"level":"warn"[4/3/2023 11:40:02],"pid":14464,"hostname":"DESKTOP-FTC3BOA","msg":"Ruta: /favicon.ico y  metodo: GET inexistentes"}
+{"level":"warn"[4/3/2023 12:13:09],"pid":2196,"hostname":"DESKTOP-FTC3BOA","msg":"Ruta: /favicon.ico y  metodo: GET inexistentes"}

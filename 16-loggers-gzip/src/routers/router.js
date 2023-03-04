@@ -1,6 +1,8 @@
 import { Router } from "express"
 import passport from "passport"
 import { cpus } from 'os';
+// GZIP
+import compression from 'compression'
 /* -------------------------------- PRODUCTS -------------------------------- */
 import ControladorProductosView from "../controllers/controllerProductsView.js"
 import ContenedorMongodb from "../containers/ContenedorMongodb.js"
@@ -35,8 +37,9 @@ router.get('/logout', (req, res, next) => {
 
 
 // INFO
-router.get('/info', (req, res, next) => {
-    res.render('info', getData())
+router.get('/info', compression(), (req, res, next) => {
+    // console.log(getData())
+    res.json(getData())
 })
 
 
