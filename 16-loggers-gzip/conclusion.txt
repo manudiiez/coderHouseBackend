@@ -1,0 +1,1 @@
+"Al comparar la velocidad utilizando Artillery y otros métodos, concluí que un servidor puede variar ligeramente sus tiempos de respuesta simplemente agregando un registro en la consola."
