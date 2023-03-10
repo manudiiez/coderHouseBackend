@@ -29,12 +29,12 @@ import routerAuth from '../routers/routerAuth.js'
 import routerProducts, { contenedorProductos } from '../routers/routerProducts.js'
 import routerRandom from '../routers/routerRandom.js'
 // LOGGERS
-import { logger } from '../loggers/loggers.js'
+import { logger } from '../loggers/loggers.js' 
 
 
 export default class Server {
     #app
-    #server
+    #server 
     constructor() {
         this.#app = express()
     }
@@ -97,7 +97,7 @@ export default class Server {
             this.#app.engine('ejs', engine);
             this.#app.set('view engine', 'ejs');
 
-
+ 
             /* --------------------------------- ROUTES --------------------------------- */
             this.#app.use((req, res, next) => {
                 this.#app.locals.signupMessage = req.flash('signupMessage')
@@ -162,5 +162,3 @@ export default class Server {
         })
     }
 }
-
-

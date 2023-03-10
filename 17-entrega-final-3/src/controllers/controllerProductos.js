@@ -17,6 +17,17 @@ class ControladorProductos {
         } 
     }
 
+    getAllView = async (req, res, next) => {
+        logger.info(req)
+        try {
+            req.productos = await this.contenedor.getAll()
+            next()
+        } catch (error) {
+            logger.error(req, error)
+            res.status(404).json({ error: `${error}` })
+        } 
+    }
+
     save = async (req, res) => {
         logger.info(req)
         try {

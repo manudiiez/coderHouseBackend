@@ -5,65 +5,79 @@ import ContenedorMongodb from "../containers/ContenedorMongodb.js"
 /* ------------------------------ CONTROLADORES ----------------------------- */
 import ControladorProductos from "../controllers/controllerProductos.js"
 import ControladorCarrito from "../controllers/controllerCart.js"
+import ControladorOrdenes from "../controllers/controllerOrder.js"
 /* --------------------------------- MODELOS -------------------------------- */
 import Product from '../models/Product.js'
 import User from '../models/User.js'
+import Orders from "../models/Orders.js"
 
  
 const routerApi = new Router()
-let carrito = []
 
 /* ------------------------------ CONTENEDORES ------------------------------ */
 const contenedorProductos = new ContenedorMongodb(Product)
 const contenedorUsuarios = new ContenedorMongodb(User)
+const contenedorOrdenes = new ContenedorMongodb(Orders)
 /* ------------------------------ CONTROLADORES ----------------------------- */
 const controllerProductos = new ControladorProductos(contenedorProductos)
 const controllerCarritos = new ControladorCarrito(contenedorUsuarios)
+const controllerOrdenes = new ControladorOrdenes(contenedorOrdenes, contenedorUsuarios)
 
 /* ----------------------------- AUTHENTICATION ----------------------------- */
 
 routerApi.post('/users', passport.authenticate('local-signup', {
-    successMessage: 'registro exitoso',
-    failureMessage: 'error al registrar'
+    successRedirect: '/',
+    failureRedirect: '/error',
+    passReqToCallback: true
 }))
     
-routerApi.get('/userinfo', (req, res, next) => {
-    // logger.info(req)
-    console.log(req.user)
-    res.status(201).json({ user: req.user })
-})
-
-
 /* -------------------------------- PRODUCTS -------------------------------- */
-routerApi.get('/products', controllerProductos.getAll)
+routerApi.get('/products', isAuthenticated, controllerProductos.getAll)
 
-routerApi.post('/products', controllerProductos.save)
+routerApi.post('/products', isAdmin, controllerProductos.save)
 
-routerApi.get('/products/:PRODUCT_ID', controllerProductos.getById)
+routerApi.get('/products/:PRODUCT_ID', isAuthenticated, controllerProductos.getById)
 
-routerApi.put('/products/:PRODUCT_ID', controllerProductos.updateById)
+routerApi.put('/products/:PRODUCT_ID', isAdmin, controllerProductos.updateById)
 
-routerApi.delete('/products/:PRODUCT_ID', controllerProductos.deleteById)
+routerApi.delete('/products/:PRODUCT_ID', isAdmin, controllerProductos.deleteById)
 
 /* ------------------------------ SHOPPINGCART ------------------------------ */
 
-routerApi.get('/shoppingcartproducts', controllerCarritos.getAll)
+routerApi.get('/shoppingcartproducts', isAuthenticated, controllerCarritos.getAll)
 
-routerApi.post('/shoppingcartproducts',  controllerCarritos.save)
+routerApi.post('/shoppingcartproducts',  isAuthenticated, controllerCarritos.save)
 
-routerApi.delete('/shoppingcartproducts/:PRODUCT_ID', (req, res, next) => {
-    const PRODUCT_ID = req.params.PRODUCT_ID
-    const i = carrito.indexOf(PRODUCT_ID);
-    if (i !== -1) {
-        carrito.splice(i, 1);
+routerApi.delete('/shoppingcartproducts/:PRODUCT_ID', isAuthenticated, controllerCarritos.deleteById)
+
+routerApi.delete('/shoppingcartproducts', controllerCarritos.delete)
+
+/* --------------------------------- ORDERS --------------------------------- */
+
+routerApi.get('/orders', isAdmin, controllerOrdenes.getAll)
+
+routerApi.post('/orders', isAuthenticated, controllerOrdenes.save)
+
+routerApi.get('/orders/:USER_ID', isAuthenticated, controllerOrdenes.getByUser)
+
+routerApi.delete('/orders/:ORDER_ID', isAuthenticated, controllerOrdenes.delete)
+
+
+function isAuthenticated (req, res, next){
+    if(req.isAuthenticated()){
+        return next()
+    }else{
+        res.json({error: "Debe autenticarse para poder acceder a esta funciones"})
     }
-    res.status(201).json({ data: carrito  })
-})
+}
 
-routerApi.delete('/shoppingcartproducts', (req, res, next) => {
-    carrito = []
-    res.status(201).json({ data: carrito  })
-})
+function isAdmin (req, res, next){
+    if(req.isAuthenticated() && req.user.role === 'admin'){
+        return next()
+    }else{
+        res.json({error: "Usted no tiene el acceso permitido a estas funciones"})
+    }
+}
 
 export default routerApi
 

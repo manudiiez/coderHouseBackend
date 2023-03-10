@@ -13,8 +13,15 @@ import morgan from 'morgan'
 // PASSPORT
 import passport from 'passport'
 import '../passport/local-auth.js'
-// ENV
+// FLASH
+import flash from 'connect-flash'
+// ENV 
 import dotenv from 'dotenv'
+// EJS
+import engine from 'ejs-mate'
+// PATH
+import path from 'path';
+import { fileURLToPath } from 'url';
 // CONFIG
 import { MONGO_SESSION, MONGO_URI, SECRET_KEY } from '../utils/config.js'
 // ROUTERS
@@ -27,13 +34,16 @@ export default class Server {
 
     constructor() {
         this.#app = express()
-    }
+    } 
 
     async conectar({ puerto = 0 }) {
         return new Promise((resolve, reject) => {
 
-            // Para que funcionen las variables de entorno
             dotenv.config()
+
+            const __filename = fileURLToPath(import.meta.url);
+            let __dirname = path.dirname(__filename);
+            __dirname = __dirname.substr(0, __dirname.length - 10);
 
             /* ---------------------------- MONGO CONNECTION ---------------------------- */
             const connect = async () => {
@@ -43,11 +53,9 @@ export default class Server {
                     throw error;
                 }
             }
-            // Si esta desconectada devuelve
             mongoose.connection.on('disconnected', () => {
                 console.log('mongoDB disconnected!!')
             })
-            // Si esta conectada devuelve
             mongoose.connection.on('connected', () => {
                 console.log('mongoDB connected!!')
             })
@@ -55,6 +63,7 @@ export default class Server {
             /* ------------------------------- MIDDLEWARES ------------------------------ */
             this.#app.use(express.json())
             this.#app.use(express.urlencoded({ extended: true }))
+            this.#app.use(express.static(__dirname + 'public'));
             /* --------------------------------- MORGAN --------------------------------- */
             this.#app.use(morgan('dev'))
             /* --------------------------------- SESSION -------------------------------- */
@@ -75,9 +84,28 @@ export default class Server {
                 }
             }))
 
+            /* ---------------------------------- FLASH --------------------------------- */
+            this.#app.use(flash())
+
             /* -------------------------------- PASSPORT -------------------------------- */
             this.#app.use(passport.initialize())
             this.#app.use(passport.session())
+
+            /* ---------------------------------- VIEWS --------------------------------- */
+            this.#app.set('views', path.join(__dirname, 'views'))
+
+            /* ----------------------------------- EJS ---------------------------------- */
+            this.#app.engine('ejs', engine);
+            this.#app.set('view engine', 'ejs');
+
+            /* ------------------------------- FLASH ROUTE ------------------------------ */
+            this.#app.use((req, res, next) => {
+                this.#app.locals.signupMessage = req.flash('signupMessage')
+                this.#app.locals.signinMessage = req.flash('signinMessage')
+                this.#app.locals.user = req.user
+                // console.log(this.#app.locals);
+                next()
+            })
 
             /* --------------------------------- ROUTES --------------------------------- */
             this.#app.use('/', router)

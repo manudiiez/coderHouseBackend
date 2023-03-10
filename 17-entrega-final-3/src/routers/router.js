@@ -1,24 +1,78 @@
 import { Router } from "express"
 import passport from "passport"
- 
+/* ------------------------------ CONTENEDORES ------------------------------ */
+import ContenedorMongodb from "../containers/ContenedorMongodb.js"
+/* ------------------------------ CONTROLADORES ----------------------------- */
+import ControladorProductos from "../controllers/controllerProductos.js"
+import ControladorCarrito from "../controllers/controllerCart.js"
+/* --------------------------------- MODELOS -------------------------------- */
+import Product from '../models/Product.js'
+import User from '../models/User.js'
 
 const router = new Router()
 
 
-// router.post('/login', (req, res, next) => {
-//     res.status(201).json({ msg: 'iniciar sesion' })
+/* ------------------------------ CONTENEDORES ------------------------------ */
+const contenedorProductos = new ContenedorMongodb(Product)
+const contenedorUsuarios = new ContenedorMongodb(User)
 
-// })
-router.post('/login', passport.authenticate('local-signin', {
-    successMessage: 'login exitoso'
-}))
-router.post('/logout', (req, res, next) => {
+/* ------------------------------ CONTROLADORES ----------------------------- */
+const controllerProductos = new ControladorProductos(contenedorProductos)
+const controllerCarritos = new ControladorCarrito(contenedorUsuarios)
+
+/* ---------------------------------- VIEWS --------------------------------- */
+
+router.get('/', isAuthenticated, controllerProductos.getAllView, (req, res, next) => {
+    res.render('index', {
+        products: req.productos,
+    })
+})
+router.get('/carrito', isAuthenticated, controllerCarritos.getAllView, (req, res, next) => {
+    res.render('carrito', {
+        cart: req.carrito,
+    })
+})
+
+router.get('/signup', (req, res) => {
+    res.render('signup')
+})
+
+router.get('/signin', (req, res, next) => {
+    res.render('signin')
+})
+
+router.get('/error', (req, res, next) => {
+    res.render('error')
+})
+
+router.get('/logout', isAuthenticated, (req, res, next) => {
     req.logout(function (err) {
         if (err) { return next(err); }
-        // res.redirect('/signin');
-        console.log('logout 2s');
+    });
+    res.render('logout')
+})
+
+/* ---------------------------------- POST ---------------------------------- */
+
+router.post('/login', passport.authenticate('local-signin', {
+    successRedirect: '/',
+    failureRedirect: '/error',
+    passReqToCallback: true
+}))
+router.post('/logout', isAuthenticated, (req, res, next) => {
+    req.logout(function (err) {
+        if (err) { return next(err); }
     });
     res.status(201).json({ msg: 'sesion cerrada' })
 })
+
+
+function isAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next()
+    } else {
+        res.redirect('/signin')
+    }
+}
 
 export default router
