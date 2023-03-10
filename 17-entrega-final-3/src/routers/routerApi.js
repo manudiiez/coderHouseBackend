@@ -4,10 +4,10 @@ import passport from "passport"
 import ContenedorMongodb from "../containers/ContenedorMongodb.js"
 /* ------------------------------ CONTROLADORES ----------------------------- */
 import ControladorProductos from "../controllers/controllerProductos.js"
-// import ControladorCart from "../controllers/controllerCart.js"
+import ControladorCarrito from "../controllers/controllerCart.js"
 /* --------------------------------- MODELOS -------------------------------- */
 import Product from '../models/Product.js'
-import Cart from "../models/Cart.js"
+import User from '../models/User.js'
 
  
 const routerApi = new Router()
@@ -15,10 +15,10 @@ let carrito = []
 
 /* ------------------------------ CONTENEDORES ------------------------------ */
 const contenedorProductos = new ContenedorMongodb(Product)
-// const contenedorCart = new ContenedorMongodb(Cart)
+const contenedorUsuarios = new ContenedorMongodb(User)
 /* ------------------------------ CONTROLADORES ----------------------------- */
 const controllerProductos = new ControladorProductos(contenedorProductos)
-// const controllerCart = new ControladorCart(contenedorCart)
+const controllerCarritos = new ControladorCarrito(contenedorUsuarios)
 
 /* ----------------------------- AUTHENTICATION ----------------------------- */
 
@@ -47,15 +47,9 @@ routerApi.delete('/products/:PRODUCT_ID', controllerProductos.deleteById)
 
 /* ------------------------------ SHOPPINGCART ------------------------------ */
 
-routerApi.get('/shoppingcartproducts', (req, res, next) => {
-    res.status(201).json({ data: carrito  })
-})
+routerApi.get('/shoppingcartproducts', controllerCarritos.getAll)
 
-routerApi.post('/shoppingcartproducts',  (req, res, next) => {
-    const PRODUCT_ID = req.body.productId
-    carrito.push(PRODUCT_ID)
-    res.status(201).json({ data: carrito  })
-})
+routerApi.post('/shoppingcartproducts',  controllerCarritos.save)
 
 routerApi.delete('/shoppingcartproducts/:PRODUCT_ID', (req, res, next) => {
     const PRODUCT_ID = req.params.PRODUCT_ID

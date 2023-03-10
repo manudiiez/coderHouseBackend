@@ -1,7 +1,9 @@
 import passport from 'passport';
 import { Strategy as LocalStrategy } from "passport-local";
+import { enviadorDeMails } from '../messages/enviadorDeMails.js';
 
 import User from '../models/User.js'
+const email_admin = 'manudiiez123@gmail.com'
 
 passport.serializeUser((user, done) => {
     done(null, user.id);
@@ -18,8 +20,6 @@ passport.use('local-signup', new LocalStrategy({
     nameField: 'name',
     lastnameField: 'lastname',
     imageField: 'image',
-    // Esto permite que recibamos ademas del email y password, que recibamos el request
-    // el done nos permite responder al cliente
     passReqToCallback: true
 }, async (req, email, password, done) => {
     const user = await User.findOne({ 'email': email })
@@ -32,7 +32,9 @@ passport.use('local-signup', new LocalStrategy({
         newUser.lastname = req.body.lastname;
         newUser.image = req.body.image || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgTgK1EYhwitE3CCCdbK1bNwFIu-vo2B5dnA&usqp=CAU";
         newUser.password = newUser.encryptPassword(password);
-        console.log(newUser)
+        // console.log(newUser)
+        const info = await enviadorDeMails.enviar(email_admin, 'Ecommerce CoderHouse nuevo registro', `<h1 style="color: blue;">Felicidades un nuevo usuario se a unido a nuestra comunidad</h1> <br/> <h3>Email: ${newUser.email}</h3> <br/> <h3>Name: ${newUser.name}</h3> <br/> <h3>Last name: ${newUser.lastname}</h3> `)
+        console.log(info);
         await newUser.save();
         done(null, newUser);
     }

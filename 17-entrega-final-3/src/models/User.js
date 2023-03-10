@@ -21,6 +21,9 @@ const userSchema = new mongoose.Schema({
     },
     image: {
         type: String
+    },
+    cart: {
+        type: [Object]
     }
 });
 
