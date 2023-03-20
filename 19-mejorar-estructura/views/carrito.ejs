@@ -1,0 +1,52 @@
+<%- layout('layouts/main.ejs') %>
+
+<section>
+    <%- include('./partials/header.ejs') %>
+    <ul class="list-group">
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div class="col-3">
+                Id del producto
+            </div>
+            <div class="col-2">
+                Nombre
+            </div>
+            <div class="col-2">
+                Precio
+            </div>
+            <div class="col-2">
+                Cantidad
+            </div>
+            <div class="col-2">
+                Subtotal
+            </div>
+            <button type="button" class="col-1 btn btn-danger carrito__btn__delete__all">Eliminar todos</button>
+
+        </li>
+        <% cart.forEach(function(product){ %>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div class="col-3">
+                    <%= product._id %>
+                </div>
+                <div class="col-2">
+                    <%= product.name %>
+                </div>
+                <div class="col-2">
+                    <%= product.price %>
+                </div>
+                <div class="col-2">
+                    <%= product.cantidad %>
+                </div>
+                <div class="col-2">
+                    <%= product.cantidad * product.price %>
+                </div>
+                <button type="button" class="col-1 btn btn-danger carrito__btn__delete" data-id=<%= product._id %> >X</button>
+            </li>
+        <% }); %>
+    </ul>
+
+    <button type="button" class="btn btn-primary mt-5 carrito__btn__buy">Comprar</button>
+
+</section>
+
+<script src="./js/cart.js"></script>
