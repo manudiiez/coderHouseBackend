@@ -1,0 +1,15 @@
+<%- layout('layouts/main.ejs') %>
+
+<div class="alert alert-danger p-5 mt-5" role="alert">
+    <% if (signupMessage.length > 0) { %>
+        <%=signupMessage %>
+    <% } %>
+    <% if (signinMessage.length > 0) { %>
+        <%=signinMessage %>
+    <% } %>
+    <% if (signinMessage.length <= 0 && signupMessage.length <= 0) { %>
+        Surgio un error inesperado
+    <% } %>
+
+    <a class='ms-3' href="/signup">volver</a>
+</div>

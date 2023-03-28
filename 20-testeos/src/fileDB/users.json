@@ -1,0 +1,41 @@
+[
+  {
+    "_id": 1,
+    "email": "admin@admin.com",
+    "name": "admin",
+    "lastname": "admin",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgTgK1EYhwitE3CCCdbK1bNwFIu-vo2B5dnA&usqp=CAU",
+    "role": "admin",
+    "cart": [
+      {
+        "product_id": "1",
+        "cantidad": 3
+      },
+      {
+        "product_id": "2",
+        "cantidad": 1
+      }
+    ],
+    "password": "$2a$10$quTWkrujdSlZKgwTD1ZCR.qHM7CjJsrY0E92p6JmRVIdL7wV1GtKG"
+  },
+  {
+    "_id": 2,
+    "email": "manudiez2003@gmail.com",
+    "name": "manu",
+    "lastname": "diez",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgTgK1EYhwitE3CCCdbK1bNwFIu-vo2B5dnA&usqp=CAU",
+    "role": "client",
+    "cart": [],
+    "password": "$2a$10$/j4i1dY5H32YZEwxdXVHjubdy71R1Gcaje6smQ0IzCU5cjaiwY33K"
+  },
+  {
+    "_id": 3,
+    "email": "manudiiez123@gmail.com",
+    "name": "manu",
+    "lastname": "diez",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgTgK1EYhwitE3CCCdbK1bNwFIu-vo2B5dnA&usqp=CAU",
+    "role": "client",
+    "cart": [],
+    "password": "$2a$10$M5PcU7LznT7YKNuctSfMk.efnCkNNpmQfAzSQHm0Z9C5bTIWqsjXa"
+  }
+]
