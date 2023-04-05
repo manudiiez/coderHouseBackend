@@ -1,0 +1,20 @@
+[
+  {
+    "_id": 1,
+    "name": "Campera",
+    "description": "La mejor campera del mercado",
+    "price": 1700
+  },
+  {
+    "_id": 2,
+    "name": "Buzo",
+    "description": "El mejor buzo del mercado",
+    "price": 2000
+  },
+  {
+    "_id": 3,
+    "name": "Remera",
+    "description": "La mejor remera del mercado",
+    "price": 1700
+  }
+]
