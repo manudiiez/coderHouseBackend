@@ -17,7 +17,7 @@ class ContenedorMongodb {
         const newModel = new this.model(item)
         try {
             return await newModel.save()
-        } catch (error) {
+        } catch (error) {  
             throw new Error(`${error}`)
         }
     }

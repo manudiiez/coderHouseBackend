@@ -1,0 +1,35 @@
+Nest tiene un concepto llamado modulos
+
+
+un modulos seria el de los usuarios por ejemplo,
+
+la funcion de crear, editar, eliminar, buscar, etc
+
+
+en nestjs podemos crear los distintos modulos usando la consola
+
+nest generate module tasks
+
+nest generate controller tasks --no-spec
+
+Para ver todos los comandos usamos el comando nest
+
+# -------------------------------- Controller -------------------------------- #
+
+Que es?
+
+cuando busquemos la ruta tasks se van ejecutar los metodos de esta clase
+
+/tasks
+
+# ---------------------------------- Service --------------------------------- #
+
+Que es?
+
+es un archivo qeu va a contener todos los metodos que podemos llamar desde cualquier parte de la aplicacion
+
+# ---------------------------------- Entity ---------------------------------- #
+
+Que es?
+
+Son como los models de mongoose, destallan como luce un dato
