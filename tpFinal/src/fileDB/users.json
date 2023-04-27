@@ -1,0 +1,11 @@
+[
+  {
+    "_id": 1,
+    "email": "manudiiez123@gmail.com",
+    "name": "manu",
+    "lastname": "diez",
+    "image": "xxx",
+    "password": "$2a$10$ts58LsBhuLS6dD07k/gQVOZQ38sCjywavOwUsccO4n1BmaZvs31Vy",
+    "idCart": null
+  }
+]
