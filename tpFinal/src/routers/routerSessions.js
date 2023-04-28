@@ -1,15 +1,14 @@
 import { Router } from "express"
-import passport from "passport"
+import ControladorUsuarios from "../controllers/user.controller.js"
+import { ContendorUsuariosDAO } from "../persistence/daos/factory.js"
 
 
 const routerSessions = new Router()
+const controllerUsuarios = new ControladorUsuarios(ContendorUsuariosDAO)
 
 
+routerSessions.post('/', controllerUsuarios.login)
 
-routerSessions.post('/', passport.authenticate('local-signin', {
-    successRedirect: '/success',
-    failureRedirect: '/error',
-    passReqToCallback: true
-}))
+
 
 export default routerSessions

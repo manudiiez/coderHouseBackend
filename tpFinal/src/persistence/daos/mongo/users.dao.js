@@ -1,7 +1,9 @@
+import jwt from 'jsonwebtoken'
 
 import ContenedorMongodb from '../../containers/ContenedorMongodb.js'
 import Cart from '../../models/Cart.js'
 import usersRepository from '../../repositories/users.repository.js'
+import { JWT_KEY } from '../../../config/config.js'
 
 
 export default class UsersMongoDAO extends ContenedorMongodb {
@@ -9,7 +11,7 @@ export default class UsersMongoDAO extends ContenedorMongodb {
         super(model)
     }
 
-    signup = async (data, cartId) => {
+    signup = async (data) => {
         const user = await this.model.findOne({ 'email': data.email })
         if (user) {
             throw new Error('Ya existe un usuario con ese email')
@@ -27,9 +29,11 @@ export default class UsersMongoDAO extends ContenedorMongodb {
             newUser.password = newUser.encryptPassword(data.password);
             const usersRepoInstance = new usersRepository(newUser)
             await usersRepoInstance.sendEmail()
-            
             const result = await newUser.save();
-            return result
+
+            const token = jwt.sign({id: result._id}, JWT_KEY)
+
+            return {user: result, token: token}
         }
     }
 
@@ -40,7 +44,9 @@ export default class UsersMongoDAO extends ContenedorMongodb {
         } else if (!user.comparePassword(data.password)){
             throw new Error('Contraseña incorrecta')
         } else {
-            return user
+            const token = jwt.sign({id: user._id}, JWT_KEY)
+            return {user: user, token: token}
+
         }
     }
  

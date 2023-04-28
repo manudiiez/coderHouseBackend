@@ -8,9 +8,6 @@ import mongoose from "mongoose"
 import MongoStore from 'connect-mongo'
 // MORGAN
 import morgan from 'morgan'
-// PASSPORT
-import passport from 'passport'
-import '../persistence/passport/local-auth.js'
 // FLASH
 import flash from 'connect-flash'
 // ENV
@@ -81,10 +78,6 @@ export default class Server {
 
             /* ---------------------------------- FLASH --------------------------------- */
             this.#app.use(flash())
-
-            /* -------------------------------- PASSPORT -------------------------------- */
-            this.#app.use(passport.initialize())
-            this.#app.use(passport.session())
 
             /* --------------------------------- ROUTES --------------------------------- */
             this.#app.use('/api/orders', routerOrders)

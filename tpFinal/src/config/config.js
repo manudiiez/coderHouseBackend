@@ -17,6 +17,7 @@ export const EMAILER_CONFIG = {
 }
 
 export const ADMIN_NUMBER_MSG = process.env.ADMIN_NUMBER_MSG
+export const JWT_KEY = process.env.JWT 
 export const SECRET = "yoursecretkey";
 export const ADMIN_EMAIL = 'admin@admin.com'
  
