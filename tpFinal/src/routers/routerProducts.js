@@ -1,5 +1,4 @@
 import { Router } from "express"
-import passport from "passport"
 import { isAdmin, isAuthenticated } from "../utils/authenticated.js"
 import { ContendorProductosDAO } from "../persistence/daos/factory.js"
 import ControladorProductos from "../controllers/products.controller.js"

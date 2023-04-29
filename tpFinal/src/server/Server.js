@@ -6,10 +6,6 @@ import session from 'express-session'
 // MONGODB
 import mongoose from "mongoose"
 import MongoStore from 'connect-mongo'
-// MORGAN
-import morgan from 'morgan'
-// FLASH
-import flash from 'connect-flash'
 // ENV
 import dotenv from 'dotenv'
 // CONFIG
@@ -56,8 +52,6 @@ export default class Server {
             /* ------------------------------- MIDDLEWARES ------------------------------ */
             this.#app.use(express.json())
             this.#app.use(express.urlencoded({ extended: true }))
-            /* --------------------------------- MORGAN --------------------------------- */
-            this.#app.use(morgan('dev'))
             /* --------------------------------- SESSION -------------------------------- */
 
             this.#app.use(session({
@@ -71,8 +65,6 @@ export default class Server {
                 }
             }))
 
-            /* ---------------------------------- FLASH --------------------------------- */
-            this.#app.use(flash())
 
             /* --------------------------------- ROUTES --------------------------------- */
             this.#app.use('/api/orders', routerOrders)
@@ -81,17 +73,6 @@ export default class Server {
             this.#app.use('/api/sessions', routerSessions)
             this.#app.use('/api/users', routerUsers)
             this.#app.use('/api/images', routerImages)
-
-            /* ------------------------------- FLASH ROUTE ------------------------------ */
-            this.#app.use((req, res, next) => {
-                this.#app.locals.errorMessage = req.flash('errorMessage')
-                this.#app.locals.signupMessage = req.flash('signupMessage')
-                this.#app.locals.signinMessage = req.flash('signinMessage')
-                // this.#app.locals.successMessage = req.flash('successMessage')
-                this.#app.locals.user = req.user
-                // console.log(this.#app.locals);
-                next()
-            })
 
             const httpServer = http.createServer(this.#app)
             /* --------------------------------- SERVER --------------------------------- */
