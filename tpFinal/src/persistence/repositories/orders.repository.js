@@ -12,7 +12,6 @@ export default class OrdersRepository {
     async sendEmail() {
 
         let html = `<h1>Detalles del pedido</h1> <br/>`
-        console.log(this.cart);
         this.cart.map(product => {
             html += `<h4>Producto: ${product.producto.name} | Cantidad: ${product.cantidad} | Subtotal: ${product.subtotal}</h4> <br/> <hr/>`
         })
