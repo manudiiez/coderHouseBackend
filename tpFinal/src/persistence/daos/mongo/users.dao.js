@@ -1,7 +1,9 @@
+import jwt from 'jsonwebtoken'
 
 import ContenedorMongodb from '../../containers/ContenedorMongodb.js'
 import Cart from '../../models/Cart.js'
 import usersRepository from '../../repositories/users.repository.js'
+import { JWT_KEY } from '../../../config/config.js'
 
 
 export default class UsersMongoDAO extends ContenedorMongodb {
@@ -9,27 +11,32 @@ export default class UsersMongoDAO extends ContenedorMongodb {
         super(model)
     }
 
-    signup = async (data, cartId) => {
+    signup = async (data) => {
         const user = await this.model.findOne({ 'email': data.email })
         if (user) {
             throw new Error('Ya existe un usuario con ese email')
         } else {
-            const cart = new Cart()
-            const cartId = await cart.save()
-            console.log(cartId);
-            const newUser = new this.model();
-            newUser.email = data.email;
-            newUser.name = data.name;
-            newUser.lastname = data.lastname;
-            newUser.image = data.image || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgTgK1EYhwitE3CCCdbK1bNwFIu-vo2B5dnA&usqp=CAU";
-            newUser.idCart = cartId._id
-
-            newUser.password = newUser.encryptPassword(data.password);
-            const usersRepoInstance = new usersRepository(newUser)
-            await usersRepoInstance.sendEmail()
-            
-            const result = await newUser.save();
-            return result
+            if(data.password?.length < 4 || typeof data.password === 'undefined'){
+                throw new Error('La contraseña es muy corta')
+            }else{
+                const cart = new Cart()
+                const cartId = await cart.save()
+                const newUser = new this.model();
+                newUser.email = data.email;
+                newUser.name = data.name;
+                newUser.lastname = data.lastname;
+                newUser.image = data.image || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgTgK1EYhwitE3CCCdbK1bNwFIu-vo2B5dnA&usqp=CAU";
+                newUser.idCart = cartId._id
+                newUser.password = newUser.encryptPassword(data.password);
+                try {
+                    const result = await newUser.save();
+                    const usersRepoInstance = new usersRepository(newUser)
+                    await usersRepoInstance.sendEmail()
+                    return result
+                } catch (error) {
+                    throw new Error('Falta informacion')
+                }
+            }
         }
     }
 
@@ -37,7 +44,7 @@ export default class UsersMongoDAO extends ContenedorMongodb {
         const user = await this.model.findOne({ 'email': data.email })
         if (!user) {
             throw new Error('No se encontro ningun usuario con ese email')
-        } else if (!user.comparePassword(data.password)){
+        } else if (typeof data.password === 'undefined' || !user.comparePassword(data.password) ){
             throw new Error('Contraseña incorrecta')
         } else {
             return user

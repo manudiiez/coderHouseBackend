@@ -10,7 +10,6 @@ class ControladorOrdenes {
     getAll = async (req, res) => {
         // logger.info(req)
         try {
-            console.log('hola');
             res.status(200).json(await this.contenedor.getAll())
         } catch (error) {
             // logger.error(req, error)

@@ -10,7 +10,7 @@ class ControladorCarrito {
     getAll = async (req, res) => {
         // logger.info(req)
         try {
-            res.status(200).json(await this.contenedor.getUserCart(req.user.idCart))
+            res.status(200).json(await this.contenedor.getUserCart(req.session.user.idCart))
         } catch (error) {
             // logger.error(req, error)
             res.status(404).json({ error: `${error}` })
@@ -23,7 +23,7 @@ class ControladorCarrito {
             res.status(200).json(await this.contenedor.add(req))
         } catch (error) {
             // logger.error(req, error)
-            res.status(404).json({ error: `${error}` })
+            res.status(404).json({ error: `${error.message}` })
         }
     }
 
