@@ -16,11 +16,11 @@ import dotenv from 'dotenv'
 import { MONGO_SESSION, MONGO_URI, SECRET_KEY } from '../config/config.js'
 // ROUTERS
 import routerUsers from '../routers/routerUsers.js'
-import router from '../routers/router.js'
 import routerSessions from '../routers/routerSessions.js'
 import routerProducts from '../routers/routerProducts.js'
 import routerCarts from '../routers/routerCarts.js'
 import routerOrders from '../routers/routerOrders.js'
+import routerImages from '../routers/routerImages.js'
 
 export default class Server {
     #app
@@ -59,11 +59,6 @@ export default class Server {
             /* --------------------------------- MORGAN --------------------------------- */
             this.#app.use(morgan('dev'))
             /* --------------------------------- SESSION -------------------------------- */
-            this.#app.use(session({
-                secret: 'secret',
-                resave: false,
-                saveUninitialized: false
-            }))
 
             this.#app.use(session({
                 store: MongoStore.create({ mongoUrl: MONGO_SESSION }),
@@ -85,7 +80,7 @@ export default class Server {
             this.#app.use('/api/products', routerProducts)
             this.#app.use('/api/sessions', routerSessions)
             this.#app.use('/api/users', routerUsers)
-            this.#app.use('/', router)
+            this.#app.use('/api/images', routerImages)
 
             /* ------------------------------- FLASH ROUTE ------------------------------ */
             this.#app.use((req, res, next) => {
@@ -94,7 +89,7 @@ export default class Server {
                 this.#app.locals.signinMessage = req.flash('signinMessage')
                 // this.#app.locals.successMessage = req.flash('successMessage')
                 this.#app.locals.user = req.user
-                console.log(this.#app.locals);
+                // console.log(this.#app.locals);
                 next()
             })
 

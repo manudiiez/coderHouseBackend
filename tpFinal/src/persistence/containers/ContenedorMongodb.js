@@ -9,7 +9,7 @@ class ContenedorMongodb {
         try {
             return await this.model.find({}).lean()
         } catch (error) {
-            throw new Error(`${error}`)
+            throw new Error(error)
         }
 
     } 
@@ -18,7 +18,7 @@ class ContenedorMongodb {
         try {
             return await newModel.save()
         } catch (error) {  
-            throw new Error(`${error}`)
+            throw new Error(error)
         }
     }
 
@@ -45,8 +45,11 @@ class ContenedorMongodb {
 
     async deleteById(id) {
         try {
-            await this.model.findByIdAndDelete(id)
-            return `Item ${id} eliminado`
+            if(await this.model.findByIdAndDelete(id)){
+                return `Item ${id} eliminado`
+            }else{
+                throw new Error('')
+            }
         } catch (error) {
             throw new Error(error)
         }

@@ -10,7 +10,7 @@ const controllerUsuarios = new ControladorUsuarios(ContendorUsuariosDAO)
 routerUsers.post('/', controllerUsuarios.save)
 
 routerUsers.get('/', isAuthenticated, (req, res) => {
-    res.status(200).json(req.user)
+    res.status(200).json(req.session.user)
 })
 
 export default routerUsers

@@ -9,7 +9,7 @@ export default class usersRepository {
 
     async sendEmail() {
 
-        await enviadorDeMails.enviar(email_admin, 'Ecommerce CoderHouse nuevo registro', `<h1 style="color: blue;">Felicidades un nuevo usuario se a unido a nuestra comunidad</h1> <br/> <h3>Email: ${this.newUser.email}</h3> <br/> <h3>Name: ${this.newUser.name}</h3> <br/> <h3>Last name: ${this.newUser.lastname}</h3> <br/> <h3>Role: ${this.newUser.role}</h3> `)
+        await enviadorDeMails.enviar(email_admin, 'Ecommerce CoderHouse nuevo registro', `<h1 style="color: blue;">Felicidades un nuevo usuario se a unido a nuestra comunidad</h1> <br/> <h3>Email: ${this.newUser.email}</h3> <br/> <h3>Name: ${this.newUser.name}</h3> <br/> <h3>Last name: ${this.newUser.lastname}</h3> <br/>`)
         
     }
 
